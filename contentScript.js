@@ -50,7 +50,7 @@ function getTargetLabel(element) {
             return textContent;
         }
     }
-    var tagName = element.tagName;
+    var tagName = element.tagName.toUpperCase();
     if (tagName === 'BUTTON') {
         var textContent = element.innerText;
         if (!isBlank(textContent)) {
@@ -67,9 +67,11 @@ function getTargetLabel(element) {
             return textContent;
         }
     }
-    var ariaLabel = getAriaLabel(element);
-    if (ariaLabel) {
-        return ariaLabel;
+    if (tagName !== 'SVG') {
+        var ariaLabel = getAriaLabel(element);
+        if (ariaLabel) {
+            return ariaLabel;
+        }
     }
     var parentElement = element.parentElement;
     if (parentElement) {
